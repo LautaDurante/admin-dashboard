@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+.MuiBadge-badge {background-color: #ff5252 !important;}
+.overflow-x-auto::-webkit-scrollbar-thumb{background: #ccc;}
+::-webkit-scrollbar{width: 10px !important; height: 10px !important;}
+::-webkit-scrollbar-thumb{background: #8f8f8f !important;}
+
+body{font-family: "Montserrat", serif; background: #f1f1f1;}
+
+.ReactCollapse--collapse {
+  transition: height 300ms;
+}
+
+.btn-blue{background: #025fa1 !important; color: #fff !important; padding: 8px 20px !important;}
+.btn-blue:hover{background: #147cc7 !important;}
+
+.bg-primary{background: #fa0101 !important; color: #fff !important;}
+.text-primary{color: #fa0101 !important;}
