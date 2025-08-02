@@ -6,6 +6,10 @@ import { FaAngleDown } from "react-icons/fa";
 import Badge from '../../Components/Badge';
 import { FaAngleUp } from "react-icons/fa";
 import Checkbox from '@mui/material/Checkbox';
+import { Link } from 'react-router-dom';
+import Progress from '../../Components/ProgressBar';
+import { GrEdit } from "react-icons/gr";
+
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -48,9 +52,8 @@ const Dashboard = () => {
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Product</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Category</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Sub Category</th>
-                <th scope="col" className="px-6 py-3 whitespace-nowrap">Brand</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Price</th>
-                <th scope="col" className="px-6 py-3 whitespace-nowrap">Rating</th>
+                <th scope="col" className="px-6 py-3 whitespace-nowrap">Sales</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Action</th>
               </tr>
             </thead>
@@ -60,15 +63,44 @@ const Dashboard = () => {
                     <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                   </td>
                   <td className="px-6 py-2">
-                    <div className="flex items-center gap-4">
-                      <div className="img"></div>
+                    <div className="flex items-center gap-4 w-[350px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[150px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-4'>
+                      <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
                     </div>
                   </td>
                 </tr>
             </tbody> 
           </table> 
         </div>
-        </div>
+        </div> 
 
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
         <div className="flex items-center justify-between px-5 py-5">
