@@ -9,10 +9,55 @@ import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 import Progress from '../../Components/ProgressBar';
 import { GrEdit } from "react-icons/gr";
+import { IoEyeSharp } from "react-icons/io5";
+import { BsTrash3Fill } from "react-icons/bs";
+import Tooltip from '@mui/material/Tooltip';
+import Pagination from '@mui/material/Pagination';
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+
+
 
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+const columns = [
+  { id: 'id', label: 'ID', minWidth: 80 },
+  { id: 'product', label: 'PRODUCT', minWidth: 150 },
+  { id: 'category', label: 'CATEGORY', minWidth: 100 },
+  {
+    id: 'subcategory',
+    label: 'SUB CATEGORY',
+    minWidth: 150,
+  },
+  {
+    id: 'price',
+    label: 'PRICE',
+    minWidth: 130,
+  },
+  {
+    id: 'sales',
+    label: 'SALES',
+    minWidth: 100,
+  },
+  {
+    id: 'action',
+    label: 'ACTION',
+    minWidth: 120,
+  },
+];
+
+function createData(name, code, population, size) {
+  const density = population / size;
+  return { name, code, population, size, density };
+}
 
 const Dashboard = () => {
 
@@ -24,6 +69,19 @@ const Dashboard = () => {
     } else { setIsOpenOrderdProduct(index); }
 
   }
+
+
+   const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
     <>
@@ -41,15 +99,15 @@ const Dashboard = () => {
 
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
         <div className="flex items-center justify-between px-5 py-5">
-          <h2 className="text-[18px] font-[600]">Productos</h2>
+          <h2 className="text-[18px] font-[600]">Productos <span className="font-[400] text-[14px]">(Table)</span></h2>
         </div>
 
-        <div class="relative overflow-x-auto mt-5 pb-2">
+        <div class="relative overflow-x-auto mt-5 pb-5">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3" width="10%"><div className="w-[60px]"> <Checkbox {...label} size='small' /></div></th>
-                <th scope="col" className="px-6 py-3 whitespace-nowrap">Product</th>
+                <th scope="col" className="px-6 pr-0 py-3" width="10%"><div className="w-[60px]"> <Checkbox {...label} size='small' /></div></th>
+                <th scope="col" className="px-0 py-3 whitespace-nowrap">Product</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Category</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Sub Category</th>
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">Price</th>
@@ -59,11 +117,11 @@ const Dashboard = () => {
             </thead>
             <tbody>   
                 <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
-                  <td className="px-6 py-2">
+                  <td className="px-6 pr-0 py-2">
                     <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                   </td>
-                  <td className="px-6 py-2">
-                    <div className="flex items-center gap-4 w-[350px]">
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
                       <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
                         <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
                       </div>
@@ -86,20 +144,377 @@ const Dashboard = () => {
                     </div>
                   </td>
                   <td className="px-6 py-2">
-                    <p className='text-[14px] w-[150px]'><span className='font-[600]'>312</span> sales</p>
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
                     <Progress value={40} type='success'/>
                   </td>
                   <td className="px-6 py-2">
-                    <div className='flex items-center gap-4'>
-                      <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]'>
-                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
                       </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                  <td className="px-6 pr-0 py-2">
+                    <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                  </td>
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                    </div>
+                  </td>
+                </tr>
+                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                  <td className="px-6 pr-0 py-2">
+                    <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                  </td>
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                    </div>
+                  </td>
+                </tr>
+                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                  <td className="px-6 pr-0 py-2">
+                    <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                  </td>
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                    </div>
+                  </td>
+                </tr>
+                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                  <td className="px-6 pr-0 py-2">
+                    <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                  </td>
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                    </div>
+                  </td>
+                </tr>
+                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                  <td className="px-6 pr-0 py-2">
+                    <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                  </td>
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                    </div>
+                  </td>
+                </tr>
+                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                  <td className="px-6 pr-0 py-2">
+                    <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                  </td>
+                  <td className="px-0 py-2">
+                    <div className="flex items-center gap-4 w-[300px]">
+                      <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                        <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                      </div>
+                      <div className='info w-[75%]'>
+                        <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                        <p className='text-[12px]'>Heladeras</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">Electrodomesticos</td>
+                  <td className="px-6 py-2">Heladeras</td>
+                  <td className="px-6 py-2">
+                    <div className="flex gap-2 flex-col">
+                      <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                        $ 1.000.000
+                      </span>
+                      <span className='price text-blue-400 text-[14px] font-[600]'>
+                        $ 999.999
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-2">
+                    <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                    <Progress value={40} type='success'/>
+                  </td>
+                  <td className="px-6 py-2">
+                    <div className='flex items-center gap-1'>
+                      <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]'/>
+                      </Button>
+                      </Tooltip>
                     </div>
                   </td>
                 </tr>
             </tbody> 
           </table> 
         </div>
+      <div className="flex items-center justify-end pt-5 pb-5 px-4">
+        <Pagination count={20} color="primary"/>
+      </div>
+        </div> 
+         <div className="card my-4 shadow-md sm:rounded-lg bg-white">
+        <div className="flex items-center justify-between px-5 py-5">
+          <h2 className="text-[18px] font-[600]">Productos <span className="font-[400] text-[14px]">(Table2)</span></h2>
+        </div>
+ <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+
+      
         </div> 
 
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
