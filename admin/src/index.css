@@ -17,3 +17,9 @@ body{font-family: "Montserrat", serif; background: #f1f1f1;}
 .bg-primary{background: #fa0101 !important; color: #fff !important;}
 .text-primary{color: #fa0101 !important;}
 .hover\:text-primary:hover{color: #02a2ff !important;}
+
+th.MuiTableCell-root {
+  background-color: #f1f1f1 !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}

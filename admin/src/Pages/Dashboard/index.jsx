@@ -489,7 +489,7 @@ const Dashboard = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>
+                <TableCell className='bg-[#ccc]'>
                   <Checkbox {...label} size='small' />
                 </TableCell>
                 {columns.map((column) => (
@@ -503,6 +503,126 @@ const Dashboard = () => {
                 ))}
               </TableRow>
               <TableRow>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <Checkbox {...label} size='small' />
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className="flex items-center gap-4 w-[300px]"><div className="img w-[65px] h-[65px] rounded-md overflow-hidden group"><Link to="/product/45745" data-discover="true"><img className="w-full group-hover:scale-105 transition-all" src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp"></img></Link></div><div className="info w-[75%]"><h3 className="font-[600] text-[12px] leading-4 hover:text-primary"><Link to="/product/45745" data-discover="true">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3><p className="text-[12px]">Heladeras</p></div></div>
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  Elecotrodomesticos
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  Heladeras
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className="flex gap-2 flex-col"><span className="oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]">$ 1.000.000</span><span className="price text-blue-400 text-[14px] font-[600]">$ 999.999</span></div>
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                  <Progress value={40} type='success' />
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className='flex items-center gap-1'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                  </div>
+                </TableCell>
+              </TableRow>
+               <TableRow>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <Checkbox {...label} size='small' />
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className="flex items-center gap-4 w-[300px]"><div className="img w-[65px] h-[65px] rounded-md overflow-hidden group"><Link to="/product/45745" data-discover="true"><img className="w-full group-hover:scale-105 transition-all" src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp"></img></Link></div><div className="info w-[75%]"><h3 className="font-[600] text-[12px] leading-4 hover:text-primary"><Link to="/product/45745" data-discover="true">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3><p className="text-[12px]">Heladeras</p></div></div>
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  Elecotrodomesticos
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  Heladeras
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className="flex gap-2 flex-col"><span className="oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]">$ 1.000.000</span><span className="price text-blue-400 text-[14px] font-[600]">$ 999.999</span></div>
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                  <Progress value={40} type='success' />
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className='flex items-center gap-1'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                  </div>
+                </TableCell>
+              </TableRow>
+               <TableRow>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <Checkbox {...label} size='small' />
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className="flex items-center gap-4 w-[300px]"><div className="img w-[65px] h-[65px] rounded-md overflow-hidden group"><Link to="/product/45745" data-discover="true"><img className="w-full group-hover:scale-105 transition-all" src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp"></img></Link></div><div className="info w-[75%]"><h3 className="font-[600] text-[12px] leading-4 hover:text-primary"><Link to="/product/45745" data-discover="true">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3><p className="text-[12px]">Heladeras</p></div></div>
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  Elecotrodomesticos
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  Heladeras
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className="flex gap-2 flex-col"><span className="oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]">$ 1.000.000</span><span className="price text-blue-400 text-[14px] font-[600]">$ 999.999</span></div>
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                  <Progress value={40} type='success' />
+                </TableCell>
+                <TableCell style={{ minWidth: columns.minWidth }}>
+                  <div className='flex items-center gap-1'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                  </div>
+                </TableCell>
+              </TableRow>
+               <TableRow>
                 <TableCell style={{ minWidth: columns.minWidth }}>
                   <Checkbox {...label} size='small' />
                 </TableCell>

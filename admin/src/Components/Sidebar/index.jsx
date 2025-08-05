@@ -10,6 +10,8 @@ import { IoBagCheck } from "react-icons/io5";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { FaAngleDown } from "react-icons/fa";
 import {Collapse} from 'react-collapse';
+import { useContext } from 'react';
+import { MyContext } from '../../App';
 
 
 
@@ -25,8 +27,10 @@ const Sidebar = () => {
 
   };
 
+  const context = useContext(MyContext);
+
   return (
-    <div className='sidebar fixed top-0 left-0 bg-[#fff] w-[13%] h-full border-r border-[rgba(0,0,0,0.1)] py-2 px-4'>
+    <div className={`sidebar fixed top-0 left-0 bg-[#fff] h-full border-r border-[rgba(0,0,0,0.1)] py-2 px-4 w-[${context.isSidebarOpen===true ? '13%' : '0px'}]`}>
       <div className="py-2 w-full">
       </div>
       <Link to="/">
