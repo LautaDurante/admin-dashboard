@@ -21,6 +21,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { PiExportBold } from "react-icons/pi";
+
 
 
 
@@ -74,6 +78,12 @@ const Dashboard = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  const [categoryFilterVal, setcategoryFilterVal] = React.useState('');
+
+  const handleChangeCatFilter = (event) => {
+    setcategoryFilterVal(event.target.value);
+  };
+ 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -99,8 +109,37 @@ const Dashboard = () => {
 
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
         <div className="flex items-center justify-between px-5 py-5">
-          <h2 className="text-[18px] font-[600]">Productos <span className="font-[400] text-[14px]">(Table)</span></h2>
-        </div>
+          <h2 className="text-[18px] font-[600]">Productos{" "}<span className="font-[400] text-[14px]">(Table)</span></h2>
+          </div>
+
+          <div className="flex items-center w-full pl-5 justify-between pr-5">
+            <div className="col w-[15%]">
+              <h4 className="font-[600] text-[13px;] mb-2">Seleccionar Categoria</h4>
+              <Select
+          className="w-full"
+          size='small'
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={categoryFilterVal}
+          onChange={handleChangeCatFilter}
+          label="Category"
+        >
+          <MenuItem value="">
+            <em>Ninguno</em>
+          </MenuItem>
+          <MenuItem value={10}>Heladeras</MenuItem>
+          <MenuItem value={20}>Televisores</MenuItem>
+          <MenuItem value={30}>Freezers</MenuItem>
+        </Select>
+            </div>
+
+            <div className="col w-[18%] ml-auto flex items-center gap-3">
+              <Button className="btn !bg-green-600 !text-white btn-sm flex items-center"><PiExportBold />Export</Button>
+              <Button className="btn-blue !text-white btn-sm flex items-center"> <BsFillCartPlusFill/> Add Product</Button>
+            </div>  
+
+          </div>
+       
 
         <div className="relative overflow-x-auto mt-5 pb-5">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -485,6 +524,35 @@ const Dashboard = () => {
         <div className="flex items-center justify-between px-5 py-5">
           <h2 className="text-[18px] font-[600]">Productos{" "}<span className="font-[400] text-[14px]">(Table2)</span></h2>
         </div>
+
+        <div className="flex items-center w-full pl-5 justify-between pr-5">
+            <div className="col w-[15%]">
+              <h4 className="font-[600] text-[13px;] mb-2">Seleccionar Categoria</h4>
+              <Select
+          className="w-full"
+          size='small'
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={categoryFilterVal}
+          onChange={handleChangeCatFilter}
+          label="Category"
+        >
+          <MenuItem value="">
+            <em>Ninguno</em>
+          </MenuItem>
+          <MenuItem value={10}>Heladeras</MenuItem>
+          <MenuItem value={20}>Televisores</MenuItem>
+          <MenuItem value={30}>Freezers</MenuItem>
+        </Select>
+            </div>
+
+            <div className="col w-[18%] ml-auto flex items-center gap-3">
+              <Button className="btn !bg-green-600 !text-white btn-sm flex items-center"><PiExportBold />Export</Button>
+              <Button className="btn-blue !text-white btn-sm flex items-center"> <BsFillCartPlusFill/> Add Product</Button>
+            </div>  
+
+          </div>
+          <br/>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -670,7 +738,7 @@ const Dashboard = () => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          // count={rows.length}
+          count={10}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

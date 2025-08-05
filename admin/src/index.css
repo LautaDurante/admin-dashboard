@@ -11,8 +11,11 @@ body{font-family: "Montserrat", serif; background: #f1f1f1;}
   transition: height 300ms;
 }
 
+.btn{ padding: 8px 20px !important;}
+.btn svg{font-size: 20px;}
 .btn-blue{background: #025fa1 !important; color: #fff !important; padding: 8px 20px !important;}
 .btn-blue:hover{background: #147cc7 !important;}
+.btn-sm{padding: 6px 20px !important; font-size: 13px !important;}
 
 .bg-primary{background: #fa0101 !important; color: #fff !important;}
 .text-primary{color: #fa0101 !important;}
