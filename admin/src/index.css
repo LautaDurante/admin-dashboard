@@ -16,6 +16,7 @@ body{font-family: "Montserrat", serif; background: #f1f1f1;}
 .btn-blue{background: #025fa1 !important; color: #fff !important; padding: 8px 20px !important;}
 .btn-blue:hover{background: #147cc7 !important;}
 .btn-sm{padding: 6px 20px !important; font-size: 13px !important;}
+.btn-lg{padding: 8px 20px !important; font-size: 16px !important;}
 
 .bg-primary{background: #fa0101 !important; color: #fff !important;}
 .text-primary{color: #fa0101 !important;}
@@ -26,3 +27,9 @@ th.MuiTableCell-root {
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important;
 }
+
+a.active button{background: #e3e3e3 !important;}
+
+.MuiButton-icon svg{font-size: 27px !important;}
+
+.css-ritz0-MuiTypography-root {font-size: 14px !important;}

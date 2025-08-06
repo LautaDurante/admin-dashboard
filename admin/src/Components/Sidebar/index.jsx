@@ -35,7 +35,7 @@ const Sidebar = () => {
       </div>
       <Link to="/">
         <img src="../../../public/img/logo.png" alt="logo"
-          className="w-[120px]" />
+          className="w-[200px]" />
       </Link>
 
       <ul className="mt-4">
