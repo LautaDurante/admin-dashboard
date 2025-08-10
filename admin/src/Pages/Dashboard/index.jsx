@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import DashboardBoxes from '../../Components/DashboardBoxes'
 import { Button } from '@mui/material';
 import { BsFillCartPlusFill } from "react-icons/bs";
@@ -21,6 +21,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+
+import { MyContext } from '../../App'
 
 
 
@@ -73,6 +75,7 @@ const Dashboard = () => {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const context = useContext(MyContext)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -91,7 +94,10 @@ const Dashboard = () => {
           </h1>
           <p>Aqui veras un resumen de actividades de la tienda.</p>
           <br />
-          <Button className="btn-blue !capitalize"><BsFillCartPlusFill />Añadir Producto</Button>
+          <Button className="btn-blue !capitalize" onClick={()=>context.setIsOpenFullScreenPanel({
+                            open:true,
+                            model:'Add Product'
+                        })} ><BsFillCartPlusFill />Añadir Producto</Button>
         </div>
         <img src="../../../public/img/compratienda.webp" className="w-[500px]"></img>
       </div>
@@ -101,6 +107,14 @@ const Dashboard = () => {
         <div className="flex items-center justify-between px-5 py-5">
           <h2 className="text-[18px] font-[600]">Productos <span className="font-[400] text-[14px]">(Table)</span></h2>
         </div>
+
+         <div className="col w-[18%] ml-auto flex items-center justify-end gap-3">
+                                <Button className="btn !bg-green-600 !text-white btn-sm">Export</Button>
+                                <Button className="btn-blue !text-white btn-sm" onClick={()=>context.setIsOpenFullScreenPanel({
+                                    open:true,
+                                    model:'Add Product'
+                                })}> Add Product</Button>
+                            </div>
 
         <div className="relative overflow-x-auto mt-5 pb-5">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -485,6 +499,14 @@ const Dashboard = () => {
         <div className="flex items-center justify-between px-5 py-5">
           <h2 className="text-[18px] font-[600]">Productos{" "}<span className="font-[400] text-[14px]">(Table2)</span></h2>
         </div>
+         <div className="col w-[18%] ml-auto flex items-center justify-end gap-3">
+                                <Button className="btn !bg-green-600 !text-white btn-sm">Export</Button>
+                                <Button className="btn-blue !text-white btn-sm" onClick={()=>context.setIsOpenFullScreenPanel({
+                                    open:true,
+                                    model:'Add Product'
+                                })}> Add Product</Button>
+                            </div>
+        <br/>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
