@@ -33,3 +33,13 @@ a.active button{background: #e3e3e3 !important;}
 .MuiButton-icon svg{font-size: 27px !important;}
 
 .css-ritz0-MuiTypography-root {font-size: 14px !important;}
+
+.MuiAppBar-colorPrimary{background: #e6e6e6 !important;}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}

@@ -1,4 +1,4 @@
-import React, { useState, PureComponent } from 'react'
+import React, { useState } from 'react'
 import DashboardBoxes from '../../Components/DashboardBoxes'
 import { Button } from '@mui/material';
 import { BsFillCartPlusFill } from "react-icons/bs";
@@ -11,6 +11,7 @@ import Progress from '../../Components/ProgressBar';
 import { GrEdit } from "react-icons/gr";
 import { IoEyeSharp } from "react-icons/io5";
 import { BsTrash3Fill } from "react-icons/bs";
+import Tooltip from '@mui/material/Tooltip';
 import Pagination from '@mui/material/Pagination';
 
 import Table from '@mui/material/Table';
@@ -20,13 +21,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { PiExportBold } from "react-icons/pi";
-
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
-
-
 
 
 
@@ -79,87 +73,7 @@ const Dashboard = () => {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [categoryFilterVal, setcategoryFilterVal] = React.useState('');
-  const [chart1Data, setChart1Data] = useState(
-    [
-  {
-    name: 'ENERO',
-    TotalUsers: 4000,
-    TotalSales: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'FEBRERO',
-    TotalUsers: 3000,
-    TotalSales: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'MARZO',
-    TotalUsers: 2000,
-    TotalSales: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'ABRIL',
-    TotalUsers: 2780,
-    TotalSales: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'MAYO',
-    TotalUsers: 1890,
-    TotalSales: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'JUNIO',
-    TotalUsers: 2390,
-    TotalSales: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'JULIO',
-    TotalUsers: 3490,
-    TotalSales: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'AGOSTO',
-    TotalUsers: 3490,
-    TotalSales: 2400,
-    amt: 2100,
-  },
-  {
-    name: 'SEPTIEMBRE',
-    TotalUsers: 3490,
-    TotalSales: 4900,
-    amt: 2100,
-  },
-  {
-    name: 'OCTUBRE',
-    TotalUsers: 3490,
-    TotalSales: 6520,
-    amt: 2100,
-  },
-  {
-    name: 'NOVIEMBRE',
-    TotalUsers: 3490,
-    TotalSales: 2300,
-    amt: 2100,
-  },
-  {
-    name: 'DICIEMBRE',
-    TotalUsers: 3490,
-    TotalSales: 4300,
-    amt: 2100,
-  },
-]);
 
-  const handleChangeCatFilter = (event) => {
-    setcategoryFilterVal(event.target.value);
-  };
- 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -168,8 +82,6 @@ const Dashboard = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  
 
   return (
     <>
@@ -187,37 +99,8 @@ const Dashboard = () => {
 
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
         <div className="flex items-center justify-between px-5 py-5">
-          <h2 className="text-[18px] font-[600]">Productos{" "}<span className="font-[400] text-[14px]">(Table)</span></h2>
-          </div>
-
-          <div className="flex items-center w-full pl-5 justify-between pr-5">
-            <div className="col w-[15%]">
-              <h4 className="font-[600] text-[13px;] mb-2">Seleccionar Categoria</h4>
-              <Select
-          className="w-full"
-          size='small'
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={categoryFilterVal}
-          onChange={handleChangeCatFilter}
-          label="Category"
-        >
-          <MenuItem value="">
-            <em>Ninguno</em>
-          </MenuItem>
-          <MenuItem value={10}>Heladeras</MenuItem>
-          <MenuItem value={20}>Televisores</MenuItem>
-          <MenuItem value={30}>Freezers</MenuItem>
-        </Select>
-            </div>
-
-            <div className="col w-[18%] ml-auto flex items-center gap-3">
-              <Button className="btn !bg-green-600 !text-white btn-sm flex items-center"><PiExportBold />Export</Button>
-              <Button className="btn-blue !text-white btn-sm flex items-center"> <BsFillCartPlusFill/> Add Product</Button>
-            </div>  
-
-          </div>
-       
+          <h2 className="text-[18px] font-[600]">Productos <span className="font-[400] text-[14px]">(Table)</span></h2>
+        </div>
 
         <div className="relative overflow-x-auto mt-5 pb-5">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -233,6 +116,58 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
+              <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+                <td className="px-6 pr-0 py-2">
+                  <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
+                </td>
+                <td className="px-0 py-2">
+                  <div className="flex items-center gap-4 w-[300px]">
+                    <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                      <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
+                    </div>
+                   <div className='info w-[75%]'>
+                      <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
+                      <p className='text-[12px]'>Heladeras</p>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-2">Electrodomesticos</td>
+                <td className="px-6 py-2">Heladeras</td>
+                <td className="px-6 py-2">
+                  <div className="flex gap-2 flex-col">
+                    <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                      $ 1.000.000
+                    </span>
+                    <span className='price text-blue-400 text-[14px] font-[600]'>
+                      $ 999.999
+                    </span>
+                  </div>
+                </td>
+                <td className="px-6 py-2">
+                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
+                  <Progress value={40} type='success' />
+                </td>
+                <td className="px-6 py-2">
+                  <div className='flex items-center gap-1'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
+                      </Button>
+                    </Tooltip>
+                  </div>
+                </td>
+              </tr>
+
               <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
                 <td className="px-6 pr-0 py-2">
                   <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
@@ -266,19 +201,25 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
+                    </Tooltip>
                   </div>
                 </td>
               </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+              <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
                 <td className="px-6 pr-0 py-2">
                   <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                 </td>
@@ -311,19 +252,25 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
+                    </Tooltip>
                   </div>
                 </td>
               </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+              <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
                 <td className="px-6 pr-0 py-2">
                   <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                 </td>
@@ -356,19 +303,25 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
+                    </Tooltip>
                   </div>
                 </td>
               </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+              <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
                 <td className="px-6 pr-0 py-2">
                   <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                 </td>
@@ -401,19 +354,25 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
+                    </Tooltip>
                   </div>
                 </td>
               </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+              <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
                 <td className="px-6 pr-0 py-2">
                   <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                 </td>
@@ -446,19 +405,25 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
+                    </Tooltip>
                   </div>
                 </td>
               </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
+              <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
                 <td className="px-6 pr-0 py-2">
                   <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
                 </td>
@@ -491,105 +456,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                  </div>
-                </td>
-              </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
-                <td className="px-6 pr-0 py-2">
-                  <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
-                </td>
-                <td className="px-0 py-2">
-                  <div className="flex items-center gap-4 w-[300px]">
-                    <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
-                      <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
-                    </div>
-                    <div className='info w-[75%]'>
-                      <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
-                      <p className='text-[12px]'>Heladeras</p>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-2">Electrodomesticos</td>
-                <td className="px-6 py-2">Heladeras</td>
-                <td className="px-6 py-2">
-                  <div className="flex gap-2 flex-col">
-                    <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                      $ 1.000.000
-                    </span>
-                    <span className='price text-blue-400 text-[14px] font-[600]'>
-                      $ 999.999
-                    </span>
-                  </div>
-                </td>
-                <td className="px-6 py-2">
-                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
-                  <Progress value={40} type='success' />
-                </td>
-                <td className="px-6 py-2">
-                  <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
-                      </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
-                      </Button>
-                  </div>
-                </td>
-              </tr>
-                <tr className=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 ">
-                <td className="px-6 pr-0 py-2">
-                  <div className="w-[60px]"> <Checkbox {...label} size='small' /></div>
-                </td>
-                <td className="px-0 py-2">
-                  <div className="flex items-center gap-4 w-[300px]">
-                    <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
-                      <Link to="/product/45745"><img src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp" className="w-full group-hover:scale-105 transition-all"></img></Link>
-                    </div>
-                    <div className='info w-[75%]'>
-                      <h3 className='font-[600] text-[12px] leading-4 hover:text-primary'><Link to="/product/45745">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3>
-                      <p className='text-[12px]'>Heladeras</p>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-2">Electrodomesticos</td>
-                <td className="px-6 py-2">Heladeras</td>
-                <td className="px-6 py-2">
-                  <div className="flex gap-2 flex-col">
-                    <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                      $ 1.000.000
-                    </span>
-                    <span className='price text-blue-400 text-[14px] font-[600]'>
-                      $ 999.999
-                    </span>
-                  </div>
-                </td>
-                <td className="px-6 py-2">
-                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
-                  <Progress value={40} type='success' />
-                </td>
-                <td className="px-6 py-2">
-                  <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                    </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
-                      </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
-                      </Button>
+                    </Tooltip>
                   </div>
                 </td>
               </tr>
@@ -604,40 +485,11 @@ const Dashboard = () => {
         <div className="flex items-center justify-between px-5 py-5">
           <h2 className="text-[18px] font-[600]">Productos{" "}<span className="font-[400] text-[14px]">(Table2)</span></h2>
         </div>
-
-        <div className="flex items-center w-full pl-5 justify-between pr-5">
-            <div className="col w-[15%]">
-              <h4 className="font-[600] text-[13px;] mb-2">Seleccionar Categoria</h4>
-              <Select
-          className="w-full"
-          size='small'
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={categoryFilterVal}
-          onChange={handleChangeCatFilter}
-          label="Category"
-        >
-          <MenuItem value="">
-            <em>Ninguno</em>
-          </MenuItem>
-          <MenuItem value={10}>Heladeras</MenuItem>
-          <MenuItem value={20}>Televisores</MenuItem>
-          <MenuItem value={30}>Freezers</MenuItem>
-        </Select>
-            </div>
-
-            <div className="col w-[18%] ml-auto flex items-center gap-3">
-              <Button className="btn !bg-green-600 !text-white btn-sm flex items-center"><PiExportBold />Export</Button>
-              <Button className="btn-blue !text-white btn-sm flex items-center"> <BsFillCartPlusFill/> Add Product</Button>
-            </div>  
-
-          </div>
-          <br/>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell className='bg-[#ccc]'>
+                <TableCell>
                   <Checkbox {...label} size='small' />
                 </TableCell>
                 {columns.map((column) => (
@@ -672,49 +524,21 @@ const Dashboard = () => {
                 </TableCell>
                 <TableCell style={{ minWidth: columns.minWidth }}>
                   <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    <Tooltip title="Edit Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="View Product Details" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
+                    </Tooltip>
+                    <Tooltip title="Delete Product" placement="top">
+                      <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                         <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                       </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-               <TableRow>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  <Checkbox {...label} size='small' />
-                </TableCell>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  <div className="flex items-center gap-4 w-[300px]"><div className="img w-[65px] h-[65px] rounded-md overflow-hidden group"><Link to="/product/45745" data-discover="true"><img className="w-full group-hover:scale-105 transition-all" src="https://images.fravega.com/f300/8d47289c2eef2730de5cc38b6acd41fb.jpg.webp"></img></Link></div><div className="info w-[75%]"><h3 className="font-[600] text-[12px] leading-4 hover:text-primary"><Link to="/product/45745" data-discover="true">Heladera Electrolux Multidoor Inverter 581Lts Plata</Link></h3><p className="text-[12px]">Heladeras</p></div></div>
-                </TableCell>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  Elecotrodomesticos
-                </TableCell>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  Heladeras
-                </TableCell>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  <div className="flex gap-2 flex-col"><span className="oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]">$ 1.000.000</span><span className="price text-blue-400 text-[14px] font-[600]">$ 999.999</span></div>
-                </TableCell>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  <p className='text-[14px] w-[100px]'><span className='font-[600]'>312</span> sales</p>
-                  <Progress value={40} type='success' />
-                </TableCell>
-                <TableCell style={{ minWidth: columns.minWidth }}>
-                  <div className='flex items-center gap-1'>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                      </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
-                      </Button>
-                    <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                        <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
-                      </Button>
+                    </Tooltip>
                   </div>
                 </TableCell>
               </TableRow>
@@ -726,12 +550,14 @@ const Dashboard = () => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={10}
+          // count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+
+
       </div>
 
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
@@ -837,35 +663,8 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
-      </div>
-      <div>
-        <div className="flex items-center px-5 py-5 pb-0"><h2 className="text-[18px] font-[600]">Total Users & Total Sales</h2>
-        </div>
-         <div className="flex items-center gap-5 px-5 py-5 pt-1">
-          <span className='flex items-center gap-1 text-[15px]'><span className='block w-[8px] h-[8px] rounded-full bg-green-600'></span>Total Users</span>
-        
-          <span className='flex items-center gap-1 text-[15px]'><span className='block w-[8px] h-[8px] rounded-full bg-primary'></span>Total Sales</span>
-    
-        </div>
-         <LineChart
-        width={1500}
-        height={500}
-        data={chart1Data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" stroke="none"/>
-        <XAxis dataKey="name" tick={{ fontSize: 14}}/>
-        <YAxis tick={{ fontSize: 14}}/>
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="TotalSales" stroke="#8884d8" strokeWidth={3} activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="TotalUsers" stroke="#82ca9d" strokeWidth={3} />
-      </LineChart>
+
+
       </div>
 
     </>
