@@ -115,6 +115,7 @@ const Dashboard = () => {
                                     model:'Add Product'
                                 })}> Add Product</Button>
                             </div>
+                            
 
         <div className="relative overflow-x-auto mt-5 pb-5">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 import SearchBox from '../../Components/SearchBox';
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineLocalPhone } from "react-icons/md";
+import { MdOutlineDateRange } from "react-icons/md";
+
 
 
 
@@ -29,6 +31,11 @@ const columns = [
     {
         id: 'userPh',
         label: 'USER PHONE',
+        minWidth: 130,
+    },
+    {
+        id: 'createDate',
+        label: 'CREATED',
         minWidth: 130,
     },
 ];
@@ -103,6 +110,191 @@ const Users = () => {
                                 </TableCell>
                                  <TableCell style={{ minWidth: columns.minWidth }}>
                                     <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
+                                </TableCell>
+                            </TableRow>
+                             <TableRow>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <Checkbox {...label} size='small' />
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <div className="flex items-center gap-4 w-[700px]">
+                                        <div className="img w-[65px] h-[65px] rounded-md overflow-hidden group">
+                                            <Link to="/product/45745" data-discover="true">
+                                                <img className="w-full group-hover:scale-105 transition-all" src="https://mui.com/static/images/avatar/1.jpg" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    Juan Avellana
+                                </TableCell>
+                                <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineEmail />JuanAvellana@gmail.com</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineLocalPhone />3704678934</span>
+                                </TableCell>
+                                 <TableCell style={{ minWidth: columns.minWidth }}>
+                                    <span className='flex items-center gap-2'><MdOutlineDateRange />20-05-2022</span>
                                 </TableCell>
                             </TableRow>
                         </TableHead>

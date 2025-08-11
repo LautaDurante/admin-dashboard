@@ -29,7 +29,7 @@ const SignUp = () => {
     }
 
   return (
-    <section className='bg-white w-full'>
+    <section className='bg-white w-full h-[100vh]'>
         <header className='w-full fixed top-0 left-0  px-4 py-2 flex items-center justify-between z-50'> 
             <Link to='/'><img src='../../../public/img/logo.png' className='w-[200px]'/></Link>
 
