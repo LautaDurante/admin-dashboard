@@ -11,6 +11,7 @@ import Divider from '@mui/material/Divider';
 import { FaUser } from "react-icons/fa6";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { MyContext } from '../../App'
+import { Link } from 'react-router-dom';
 
 
 
@@ -122,7 +123,9 @@ const Header = () => {
             </div>
 
               :
-            <Button className='btn-blue btn-sm !rounded-full'>Sign In</Button>
+              <Link to="/login" >
+                <Button className='btn-blue btn-sm !rounded-full'>Sign In</Button>
+              </Link>
         }
 
 

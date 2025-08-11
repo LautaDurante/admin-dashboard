@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Badge, Button } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
 import { MyContext } from '../../App';
@@ -21,18 +21,20 @@ import { IoEyeSharp } from "react-icons/io5";
 import { BsTrash3Fill } from "react-icons/bs";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import SearchBox from '../../Components/SearchBox';
+import Chip from '@mui/material/Chip';
 
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const columns = [
-    { id: 'image', label: 'IMAGE', minWidth: 150 },
-    { id: 'catName', label: 'CATEGORY NAME', minWidth: 150 },
+    { id: 'image', label: 'CATEGORY IMAGE', minWidth: 250 },
+    { id: 'catName', label: 'CATEGORY NAME', minWidth: 250 },
+    { id: 'subCatName', label: 'SUB CATEGORY NAME', minWidth: 400 },
     { id: 'action', label: 'ACTION', minWidth: 100 },
 ];
 
-const CategoryList = () => {
+const SubCategoryList = () => {
 
     const [categoryFilterVal, setcategoryFilterVal] = React.useState('');
     const [page, setPage] = React.useState(0);
@@ -57,15 +59,15 @@ const CategoryList = () => {
         <>
 
             <div className="flex items-center justify-between px-2 py-0 mt-3">
-                <h2 className="text-[18px] font-[600]">Category List<span className="font-[400] text-[14px]"> (Table2)</span></h2>
+                <h2 className="text-[18px] font-[600]"> Sub Category List<span className="font-[400] text-[14px]"> (Table2)</span></h2>
             </div>
 
             <div className="col w-[20%] ml-auto flex items-center justify-end gap-3">
                         <Button className="btn !bg-green-600 !text-white btn-sm">Export</Button>
                         <Button className="btn-blue !text-white btn-sm" onClick={()=>context.setIsOpenFullScreenPanel({
                             open:true,
-                            model:'Add New Category'
-                        })}> Add New Category</Button>
+                            model:'Add New Sub Category'
+                        })}> Add New Sub Category</Button>
                     </div>
 
             <div className="card my-4 pt-5 shadow-md sm:rounded-lg bg-white">
@@ -100,16 +102,22 @@ const CategoryList = () => {
                                     </div>
                                     
                                 </TableCell>
-                                <TableCell width={100}>
-                                    Electrodomesticos
+
+                                <TableCell>
+                                   <Chip label="Electrodomesticos" />
                                 </TableCell>
+
+                                <TableCell>
+                                   <div className='flex items-center gap-3'>
+                                       <Chip label="Heladeras" color='primary' />
+                                       <Chip label="Freezer" color='primary' />
+                                   </div>
+                                </TableCell>
+
                                 <TableCell width={100}>
                                     <div className='flex items-center gap-1'>
                                         <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                                             <GrEdit className='text-[rgba(0,0,0,0.7)] text-[20px]' />
-                                        </Button>
-                                        <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
-                                            <IoEyeSharp className='text-[rgba(0,0,0,0.7)] text-[18px]' />
                                         </Button>
                                         <Button className='!w-[35px] !h-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] !min-w-[35px]'>
                                             <BsTrash3Fill className='text-[rgba(0,0,0,0.7)] text-[18px]' />
@@ -117,6 +125,10 @@ const CategoryList = () => {
                                     </div>
                                 </TableCell>
                             </TableRow>
+                            
+                            
+                            
+                            
                         </TableHead>
                         <TableBody>
                         </TableBody>
@@ -139,4 +151,4 @@ const CategoryList = () => {
     )
 }
 
-export default CategoryList;
+export default SubCategoryList;
